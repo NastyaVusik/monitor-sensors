@@ -73,11 +73,11 @@ The sensor entity includes the following fields:
 ### API Endpoints
 
 - `GET /monitor-sensors/sensors` - Get all sensors (Admin and Viewer)
-- `GET /monitor-sensors/sensors/{id}` - Get sensor by ID (Admin only)
+- `GET /monitor-sensors/sensors/{id}` - Get sensor by ID (Admin and Viewer)
 - `POST /monitor-sensors/sensors` - Create a new sensor (Admin only)
 - `PUT /monitor-sensors/sensors/{id}` - Update a sensor (Admin only)
 - `DELETE /monitor-sensors/sensors/{id}` - Delete a sensor (Admin only)
-- `GET /monitor-sensors/sensors/search?search={query}` - Search sensors by name or model (Admin and Viewer)
+- `GET /monitor-sensors/sensors?search={query}` - Search sensors by name or model (Admin and Viewer)
 
 ### H2 Database Console
 

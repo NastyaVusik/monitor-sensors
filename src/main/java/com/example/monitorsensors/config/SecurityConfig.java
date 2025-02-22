@@ -2,6 +2,7 @@ package com.example.monitorsensors.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,8 +25,10 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authz -> authz
-                .requestMatchers(mvcMatcherBuilder.pattern("/sensors/**")).hasRole("ADMINISTRATOR")
-                .requestMatchers(mvcMatcherBuilder.pattern("/sensors/search")).hasAnyRole("ADMINISTRATOR", "VIEWER")
+                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/sensors/**")).hasAnyRole("ADMINISTRATOR", "VIEWER")
+                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/sensors/**")).hasRole("ADMINISTRATOR")
+                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT, "/sensors/**")).hasRole("ADMINISTRATOR")
+                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE, "/sensors/**")).hasRole("ADMINISTRATOR")
                 .requestMatchers(mvcMatcherBuilder.pattern("/h2-console/**")).hasRole("ADMINISTRATOR")
                 .anyRequest().authenticated()
                 )

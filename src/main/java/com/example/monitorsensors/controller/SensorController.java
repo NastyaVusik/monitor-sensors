@@ -26,7 +26,7 @@ import jakarta.validation.Valid;
 public class SensorController {
 
     private final SensorService sensorService;
-    
+
     public SensorController(SensorService sensorService) {
         this.sensorService = sensorService;
     }
@@ -35,11 +35,6 @@ public class SensorController {
     @PreAuthorize("hasRole('ADMINISTRATOR')")
     public ResponseEntity<SensorResponseDTO> createSensor(
             @Valid @RequestBody SensorRequestDTO sensorDTO) {
-                System.out.println("sensorDTO: " + sensorDTO.getName() +
-                " " + sensorDTO.getModel() + " " + " " + sensorDTO.getType() +
-                " " + sensorDTO.getUnit() + " " + sensorDTO.getLocation() +
-                " " + sensorDTO.getDescription());
-
         SensorResponseDTO createdSensor = sensorService.createSensor(sensorDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdSensor);
     }
@@ -65,11 +60,6 @@ public class SensorController {
     public ResponseEntity<SensorResponseDTO> updateSensor(
             @PathVariable Long id,
             @Valid @RequestBody SensorRequestDTO sensorDTO) {
-                System.out.println("sensorDTO: " + sensorDTO.getName() +    
-                " " + sensorDTO.getModel() + " " + " " + sensorDTO.getType() +
-                " " + sensorDTO.getUnit() + " " + sensorDTO.getLocation() +
-                " " + sensorDTO.getDescription());
-                
         return ResponseEntity.ok(sensorService.updateSensor(id, sensorDTO));
     }
 
