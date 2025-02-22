@@ -1,0 +1,233 @@
+databaseChangeLog:
+- changeSet:
+    id: 1740248474825-1
+    author: Vusik Nastya
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: CONSTRAINT_7
+            name: ID
+            type: BIGINT
+        - column:
+            name: PASSWORD
+            type: VARCHAR(255)
+        - column:
+            name: ROLE
+            type: ENUM('ADMINISTRATOR', 'VIEWER')
+        - column:
+            name: USERNAME
+            type: VARCHAR(255)
+        tableName: APP_USER
+- changeSet:
+    id: 1740248474825-2
+    author: Vusik Nastya
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: CONSTRAINT_9
+            name: ID
+            type: BIGINT
+        - column:
+            name: DESCRIPTION
+            type: VARCHAR(200)
+        - column:
+            name: LOCATION
+            type: VARCHAR(40)
+        - column:
+            constraints:
+              nullable: false
+            name: MODEL
+            type: VARCHAR(15)
+        - column:
+            constraints:
+              nullable: false
+            name: NAME
+            type: VARCHAR(30)
+        - column:
+            name: RANGE_FROM
+            type: INT
+        - column:
+            name: RANGE_TO
+            type: INT
+        - column:
+            constraints:
+              nullable: false
+            name: TYPE_ID
+            type: BIGINT
+        - column:
+            name: UNIT_ID
+            type: BIGINT
+        tableName: SENSOR
+- changeSet:
+    id: 1740248474825-3
+    author: Vusik Nastya
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: CONSTRAINT_D
+            name: ID
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: NAME
+            type: VARCHAR(255)
+        tableName: SENSOR_TYPE
+- changeSet:
+    id: 1740248474825-4
+    author: Vusik Nastya
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: CONSTRAINT_2
+            name: ID
+            type: BIGINT
+        - column:
+            name: NAME
+            type: VARCHAR(255)
+        tableName: UNIT
+- changeSet:
+    id: 1740248474825-5
+    author: Vusik Nastya
+    changes:
+    - addUniqueConstraint:
+        columnNames: USERNAME
+        constraintName: UK3K4CPLVH82SRUEUTTFKWNYLQ0
+        tableName: APP_USER
+- changeSet:
+    id: 1740248474825-6
+    author: Vusik Nastya
+    changes:
+    - addUniqueConstraint:
+        columnNames: NAME
+        constraintName: UKAA58C9DE9EU0V585LE47W25MY
+        tableName: UNIT
+- changeSet:
+    id: 1740248474825-7
+    author: Vusik Nastya
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: UNIT_ID
+        indexName: FK7503O6LW1D906ID4SI23SMCTP_INDEX_9
+        tableName: SENSOR
+- changeSet:
+    id: 1740248474825-8
+    author: Vusik Nastya
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: TYPE_ID
+        indexName: FKSQSJ9AT1RXXB1X37DNFTF8HRT_INDEX_9
+        tableName: SENSOR
+- changeSet:
+    id: 1740248474825-9
+    author: Vusik Nastya
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: UNIT_ID
+        baseTableName: SENSOR
+        constraintName: FK7503O6LW1D906ID4SI23SMCTP
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: UNIT
+        validate: true
+- changeSet:
+    id: 1740248474825-10
+    author: Vusik Nastya
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: TYPE_ID
+        baseTableName: SENSOR
+        constraintName: FKSQSJ9AT1RXXB1X37DNFTF8HRT
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: SENSOR_TYPE
+        validate: true
+- changeSet:
+    id: 1740248474825-11
+    author: Vusik Nastya
+    changes:
+    - insert:
+        tableName: SENSOR_TYPE
+        columns:
+        - column:
+            name: NAME
+            value: 'Pressure'
+    - insert:
+        tableName: SENSOR_TYPE
+        columns:
+        - column:
+            name: NAME
+            value: 'Voltage'
+    - insert:
+        tableName: SENSOR_TYPE
+        columns:
+        - column:
+            name: NAME
+            value: 'Temperature'
+    - insert:
+        tableName: SENSOR_TYPE
+        columns:
+        - column:
+            name: NAME
+            value: 'Humidity'
+- changeSet:
+    id: 1740248474825-12
+    author: Vusik Nastya
+    changes:
+    - insert:
+        tableName: UNIT
+        columns:
+        - column:
+            name: NAME
+            value: 'bar'
+    - insert:
+        tableName: UNIT
+        columns:
+        - column:
+            name: NAME
+            value: 'voltage'
+    - insert:
+        tableName: UNIT
+        columns:
+        - column:
+            name: NAME
+            value: '°С'
+    - insert:
+        tableName: UNIT
+        columns:
+        - column:
+            name: NAME
+            value: '%'
+
