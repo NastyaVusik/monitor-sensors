@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "912ee6ac-a244-446e-83db-998a72da4ff6",
+		"name": "Monitor Sensors API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "42487588"
+	},
+	"item": [
+		{
+			"name": "Create Sensor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Temperature Sensor\",\n  \"model\": \"T1000\",\n  \"type\": \"Temperature\",\n  \"unit\": \"°С\",\n  \"range\": {\n    \"rangeFrom\": 1,\n    \"rangeTo\": 100\n  },\n  \"location\": \"Room 101\",\n  \"description\": \"Measures temperature in the room\"\n}"
+				},
+				"url": "{{baseUrl}}/sensors"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Sensors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/sensors"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Sensors",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sensors?search=T100",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sensors"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "T100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sensor By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sensors/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sensors",
+						":id"
+					],
+					"query": [
+						{
+							"key": "sensorId",
+							"value": null,
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Sensor",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Updated Sensor\",\n  \"model\": \"U1000\",\n  \"type\": \"Voltage\",\n  \"unit\": \"voltage\",\n  \"range\": {\n    \"rangeFrom\": 10,\n    \"rangeTo\": 200\n  },\n  \"location\": \"Updated Location\",\n  \"description\": \"Updated description\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sensors/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sensors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Sensor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sensors/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sensors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "admin",
+			"username": "admin"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8080/monitor-sensors",
+			"type": "string"
+		}
+	]
+}
